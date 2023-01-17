@@ -1,8 +1,9 @@
 import { config } from "../config.js";
+import { fromDate, spinner, toDate } from "../UI/elements.js";
+import { makeTable } from "../UI/table.js";
+import { charts } from "./charts.js";
 
-
-
-const mapData = (data) => {
+export const mapData = (data) => {
     const result = data.map(data => ({
         awb: data['Airway bill no'],
         rawb: data['Return airway bill no'],
@@ -15,40 +16,37 @@ const mapData = (data) => {
         packedBy: data['Packed by'],
         location: data['Packing location'],
         tour: data['acc. country'],
-        packingEnd: `${data['Packing End']}`// ${data['__EMPTY_6']}`
+        packingEnd: `${data['Packing End']}`
     }))
     return result;
 }
 
-export const fetchConfigFile = async () => {
-    const res = await fetch("/config.json");
-    const json = await res.json();
-    return json;
-}
-
-export const calculatePackersData = (data) => {
-    data = mapData(data);
-    const packersDataGroupByNames = data.sort((a, b) => {
+export const calculatePackersData = () => {
+    const sortedData = packersData.sort((a, b) => {
         return new Date(a['packingEnd']) - new Date(b['packingEnd'])
     })
-        .filter(order => order['location'] !== "undefined" && order['location'] !== 'null' &&
-            order["location"])//&& new Date(order['packingEnd']) >= fromDate && new Date(order['packingEnd']) <= toDate)
-        .reduce((acc, order) => {
-            const packLocation = order['location'].toLowerCase().substr(0, 4).trim();
-            const packerName = config[packLocation];
-            const orders = order['orderNumber'];
-            if (packerName) {
-                acc[packerName] = acc[packerName] || {};
-                acc[packerName]["items"] = acc[packerName]["items"] || [];
-                acc[packerName]['orders'] = acc[packerName]['orders'] || {};
-                acc[packerName]['orders'][orders] = acc[packerName]['orders'][orders] || []
-                if (acc[packerName]['orders'][orders].length <= 100) {
-                    acc[packerName]['orders'][orders].push(order);
-                    acc[packerName]["items"].push(order);
-                }
+    const filteredData = sortedData.filter(order => {
+        const packageDate = new Date(order['packingEnd']);
+        // console.log(packageDate, order['packingEnd'], order['item'], "  ", fromDate);
+        return packageDate >= fromDate() && packageDate <= toDate()
+    })
+    const packersDataGroupByNames = filteredData.reduce((acc, order) => {
+        const packLocation = order['location'].toLowerCase().substr(0, 4).trim();
+        const packerName = config[packLocation];
+        const orders = order['orderNumber'];
+        if (packerName) {
+            acc[packerName] = acc[packerName] || {};
+            acc[packerName]["items"] = acc[packerName]["items"] || [];
+            acc[packerName]['orders'] = acc[packerName]['orders'] || {};
+            acc[packerName]['orders'][orders] = acc[packerName]['orders'][orders] || []
+            if (acc[packerName]['orders'][orders].length <= 100) {
+                acc[packerName]['orders'][orders].push(order);
+                acc[packerName]["items"].push(order);
             }
-            return acc;
-        }, {})
+        }
+        return acc;
+    }, {})
+
     const results = (Object.entries(packersDataGroupByNames).slice()
         .reduce((result, [packerName, packerData]) => {
             const packerId = packerData['items'][0]['packedBy'];
@@ -70,6 +68,12 @@ export const calculatePackersData = (data) => {
             )
             return result
         }, []));
+    window.packers = results;
+    if (results.length !== 0) {
+        makeTable(results);
+        charts(results);
+    }
+    spinner('remove');
     return results;
 }
 

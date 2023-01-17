@@ -7,7 +7,7 @@ export const charts = (packersData) => {
 
     //Currert year and Month
     // const year = new Date(packersData['numberOfItems'][0]["packingEnd"]);
-    const month = new Date(packersData[0]['numberOfItems'][0]["packingEnd"]).toLocaleTimeString();//.toLocaleString('default', { month: 'long' });
+    const month = new Date(packersData[0]['numberOfItems'][0]["packingEnd"]).toLocaleTimeString() || "No Data Found"//.toLocaleString('default', { month: 'long' });
     //Packer data sorterd
     const perfData = calculatePerf(packersData);
     //sort by perf

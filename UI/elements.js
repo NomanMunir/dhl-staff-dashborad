@@ -22,16 +22,25 @@ export const spinner = (value) => {
 	}
 };
 
+export const fromDate = () => {
+	const date = new Date(`${fromDateElem.value} ${fromTimeElem.value}`);
+	return date;
+}
+
+export const toDate = () => {
+	const date = new Date(`${toDateElem.value} ${toTimeElem.value}`);
+	return date;
+}
 // --------------------Setting previous month as a default month------------------------------ //
 
 export const setDefaultDateTime = () => {
 	const current = new Date();
-	fromDateElem.value = current.toISOString().split("T")[0];
-	fromTimeElem.value = current.toISOString().split("T")[1].split(".")[0];
+	toDateElem.value = current.toISOString().substring(0, 10);
+	toTimeElem.value = current.toISOString().substring(11, 16);
 	//setting date to previews date
 	current.setDate(current.getDate() - 1);
-	toDateElem.value = current.toISOString().split("T")[0];
-	toTimeElem.value = current.toISOString().split("T")[1].split(".")[0];
+	fromDateElem.value = current.toISOString().substring(0, 10);
+	fromTimeElem.value = current.toISOString().substring(11, 16);
 }
 
 // -----------------------------------Check Boxes Elements---------------------------------- //
