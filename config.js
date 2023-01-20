@@ -36,5 +36,6 @@ export const config = {
     "abdu": "Abdullahi",
     "abba": "Abbas",
     "sika": "Sikandar",
-    "rich": "Richard"
+    "rich": "Richard",
+    "sula": "Sulaiman"
 }

@@ -20,34 +20,31 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 	<title>Ynap Dashboard</title>
-
 </head>
 
 <body>
 	<div class="container-fluid">
 		<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
 			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-				<!-- <svg class="bi me-2" width="40" height="32">
-					<use xlink:href="#bootstrap"></use>
-				</svg> -->
 				<span class="fs-4 text-warning"><b class="titleDate">YNAP</b></span>
 			</a>
-
 			<div title="Enter Value And Press Enter to filter the Break Time">
 				<input class="form-control form-control" defaultValue="60" placeholder="Filter Break Time" type="text"
 					name="Toggle Menu" id="break-time">
 			</div>
-			<div class="bg-light btn-group-sm card d-flex flex-row mx-2" role="group"
-				aria-label="Basic checkbox toggle button group" style="font-size: x-small;">
-				<input type="checkbox" checked class="btn-check" id="perf-chart-checkbox" autocomplete="off">
-				<label class="btn btn-outline-warning" for="perf-chart-checkbox">Perf Chart</label>
+			<div>
+				<div class="btn-group btn-group-sm px-2" role="group" aria-label="Basic checkbox toggle button group">
 
-				<input type="checkbox" checked class="btn-check" id="table-checkbox" autocomplete="off">
-				<label class="btn btn-outline-warning" for="table-checkbox">Table</label>
+					<input type="checkbox" checked class="btn-check" id="perf-chart-checkbox" autocomplete="off">
+					<label class="btn btn-outline-warning" for="perf-chart-checkbox">Perf Chart</label>
 
-				<input type="checkbox" checked class="btn-check" id="uph-chart-checkbox" autocomplete="off">
-				<label class="btn btn-outline-warning" for="uph-chart-checkbox">Uph Chart</label>
+					<input type="checkbox" checked class="btn-check" id="table-checkbox" autocomplete="off">
+					<label class="btn btn-outline-warning" for="table-checkbox">Table</label>
 
+					<input type="checkbox" checked class="btn-check" id="uph-chart-checkbox" autocomplete="off">
+					<label class="btn btn-outline-warning" for="uph-chart-checkbox">Uph Chart</label>
+
+				</div>
 			</div>
 			<div class="card bg-transparent d-flex flex-row">
 				<div class="mx-2" id="from-date-div">

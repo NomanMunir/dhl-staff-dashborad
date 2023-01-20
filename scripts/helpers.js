@@ -22,9 +22,11 @@ export const mapData = (data) => {
 }
 
 export const calculatePackersData = () => {
-    const sortedData = packersData.sort((a, b) => {
+    const dbPackersData = packersData.slice();
+    const sortedData = dbPackersData.sort((a, b) => {
         return new Date(a['packingEnd']) - new Date(b['packingEnd'])
     })
+
     const filteredData = sortedData.filter(order => {
         const packageDate = new Date(order['packingEnd']);
         // console.log(packageDate, order['packingEnd'], order['item'], "  ", fromDate);
@@ -76,7 +78,6 @@ export const calculatePackersData = () => {
     spinner('remove');
     return results;
 }
-
 export const getTotalTime = (packerData) => {
 
     let breakTime = document.querySelector('#break-time').value;

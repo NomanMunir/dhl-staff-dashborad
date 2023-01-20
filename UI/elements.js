@@ -47,7 +47,8 @@ export const setDefaultDateTime = () => {
 export const perfChartCheckboxElem = document.querySelector('#perf-chart-checkbox');
 export const uphChartCheckboxElem = document.querySelector('#uph-chart-checkbox');
 export const tableCheckboxElem = document.querySelector('#table-checkbox');
-export const fileCheckboxElem = document.querySelector('#file-checkbox');
-
+export const perfChartDiv = document.querySelector("#perf-charts")
+export const tableDiv = document.querySelector("#table")
+export const uphChartDiv = document.querySelector("#uph-charts")
 
 

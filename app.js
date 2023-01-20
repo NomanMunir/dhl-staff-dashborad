@@ -3,7 +3,7 @@ import {
     tableCheckboxElem, tableElem,
     uphChartCheckboxElem, fromDateElem,
     fromTimeElem, setDefaultDateTime,
-    spinner, toDateElem, toTimeElem
+    spinner, toDateElem, toTimeElem, perfChartDiv, uphChartDiv, tableDiv
 } from "./UI/elements.js";
 import { calculatePackersData, mapData } from "./scripts/helpers.js";
 
@@ -24,7 +24,8 @@ const parseData = () => {
         },
         complete: function (results) {
             console.log(results);
-            window.packersData = mapData(results.data);
+            const uniqueArr = [...new Set(results.data.map(JSON.stringify))].map(JSON.parse);
+            window.packersData = mapData(uniqueArr);
             calculatePackersData();
             spinner("remove");
         }
@@ -34,25 +35,26 @@ const parseData = () => {
 
 const tableCheckboxChangeHandler = (e) => {
     if (!tableCheckboxElem.checked) {
-        tableElem.className = "display-none";
+        tableDiv.className = "display-none";
     } else {
-        tableElem.className = "mx-auto my-3 bg-white";
+        tableDiv.className = "mx-auto my-3 bg-white";
     }
 }
 
 const perfChartCheckboxChangeHandler = (e) => {
+    console.log(perfChartCheckboxElem.checked);
     if (!perfChartCheckboxElem.checked) {
-        perfChartCheckboxElem.className = "display-none";
+        perfChartDiv.className = "display-none";
     } else {
-        perfChartCheckboxElem.className = "mx-auto my-3 bg-white";
+        perfChartDiv.className = "mx-auto my-3 bg-white";
     }
 }
 
 const uphChartCheckboxChangeHandler = (e) => {
     if (!uphChartCheckboxElem.checked) {
-        uphChartCheckboxElem.className = "display-none";
+        uphChartDiv.className = "display-none";
     } else {
-        uphChartCheckboxElem.className = "mx-auto bg-white";
+        uphChartDiv.className = "mx-auto bg-white";
     }
 }
 
