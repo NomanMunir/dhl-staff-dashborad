@@ -1,4 +1,4 @@
-import { perfChartCheckboxElem, uphChartCheckboxElem } from "../UI/elements.js";
+import { perfChartCheckboxElem, uphChartCheckboxElem, fromDate, toDate } from "../UI/elements.js";
 
 export const charts = (packersData) => {
     //Html Elements for charts
@@ -7,7 +7,6 @@ export const charts = (packersData) => {
 
     //Currert year and Month
     // const year = new Date(packersData['numberOfItems'][0]["packingEnd"]);
-    const month = new Date(packersData[0]['numberOfItems'][0]["packingEnd"]).toLocaleTimeString() || "No Data Found"//.toLocaleString('default', { month: 'long' });
     //Packer data sorterd
     const perfData = calculatePerf(packersData);
     //sort by perf
@@ -21,7 +20,7 @@ export const charts = (packersData) => {
     const uphChartData = {
         labels: uphPackers.map(packer => packer.packerName.toUpperCase()), //Packers Names
         datasets: [{
-            label: `UPH for ${month}`,
+            label: `UPH`,// for ${(fromDate())} ${toDate().toLocaleDateString()}`,
             data: uphPackers.map(item => ~~item["uph"]),
             backgroundColor: backgroundColorForUph,
             borderColor: backgroundColorForUph,
@@ -32,7 +31,7 @@ export const charts = (packersData) => {
     const perfChartData = {
         labels: perfPackers.map(packer => packer.packerName.toUpperCase()), //Packers Name
         datasets: [{
-            label: `Performance for ${month}`,
+            label: `Performance`,// for ${(fromDate())} ${toDate().toLocaleDateString()}`,
             data: perfPackers.map(item => item["performance"]),
             backgroundColor: backgroundColorForPerf,
             borderColor: backgroundColorForPerf,

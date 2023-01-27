@@ -11,23 +11,46 @@ import { calculatePackersData, mapData } from "./scripts/helpers.js";
 const parseData = () => {
     setDefaultDateTime();
     spinner("add");
-    const url = "/personal/nauman_munir_dhl_com/Documents/dhl-staff-dashborad/test.csv";
+    const url = "./test.csv";
     Papa.parse(url, {
         download: true,
         header: true,
         skipEmptyLines: "greedy",
-        dynamicTyping: true,
+        // dynamicTyping: true,
         error: function (error, data) {
-            alert('File not found!');
             console.log(error, data);
+            Toastify({
+                duration: 4000,
+                text: "File is empty or file name is wrong.",
+                position: "left",
+                gravity: "bottom",
+                className: "bg-warning",
+                style: {
+                    opacity: 0.5,
+                    background: "#00b09b",
+                }
+            }).showToast();
             spinner("remove");
         },
         complete: function (results) {
             console.log(results);
-            const uniqueArr = [...new Set(results.data.map(JSON.stringify))].map(JSON.parse);
-            window.packersData = mapData(uniqueArr);
-            calculatePackersData();
-            spinner("remove");
+            if (results.data.length !== 0) {
+                const uniqueArr = [...new Set(results.data.map(JSON.stringify))].map(JSON.parse);
+                window.packersData = mapData(uniqueArr);
+                calculatePackersData();
+            } else {
+                Toastify({
+                    text: "File is empty or file name is wrong.",
+                    className: "info",
+                    style: {
+                        opacity: 0.5,
+                        background: "#00b09b",
+                    },
+                    position: "left",
+                    gravity: "bottom",
+                }).showToast();
+            }
+            spinner('remove');
         }
     })
 }

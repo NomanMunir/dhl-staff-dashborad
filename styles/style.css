@@ -1,6 +1,15 @@
 /* #table {
     width: 900px;
 } */
+
+#brand {
+    font-family: Arial;
+    font-size: 20px;
+    line-height: 24px;
+    color: #c00;
+    vertical-align: baseline;
+}
+
 section {
     background-color: #EFF4F7;
 
@@ -21,17 +30,18 @@ section {
     margin: 10px;
     background-color: white;
 }
-.spinner{
-	width:400px;
-	margin: auto;
-  z-index: 100;
+
+.spinner {
+    width: 400px;
+    margin: auto;
+    z-index: 100;
 }
 
 #drop-area {
     border: 2px dashed #ccc;
     border-radius: 20px;
     width: 50vw;
-    height: 60vh;		
+    height: 60vh;
     font-family: sans-serif;
     margin: 50px auto;
     padding: 20px;

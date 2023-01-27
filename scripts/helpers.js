@@ -5,23 +5,24 @@ import { charts } from "./charts.js";
 
 export const mapData = (data) => {
     const result = data.map(data => ({
-        awb: data['Airway bill no'],
-        rawb: data['Return airway bill no'],
-        city: data['City'],
-        item: data['Item'],
-        orderId: data['Order ID'],
-        orderNumber: data['Order Number'],
-        orderType: data['Order type'],
-        packId: data['Pack id'],
-        packedBy: data['Packed by'],
-        location: data['Packing location'],
-        tour: data['acc. country'],
-        packingEnd: `${data['Packing End']}`
+        awb: data['Airway bill no'].trim(),
+        rawb: data['Return airway bill no'].trim(),
+        city: data['City'].trim(),
+        item: data['Item'].trim(),
+        orderId: data['Order ID'].trim(),
+        orderNumber: data['Order Number'].trim(),
+        orderType: data['Order type'].trim(),
+        packId: data['Pack id'].trim(),
+        packedBy: data['Packed by'].trim(),
+        location: data['Packing location'].trim(),
+        tour: data['acc. country'].trim(),
+        packingEnd: `${data['Packing End'].trim()}`
     }))
     return result;
 }
 
 export const calculatePackersData = () => {
+    window.packers = [];
     const dbPackersData = packersData.slice();
     const sortedData = dbPackersData.sort((a, b) => {
         return new Date(a['packingEnd']) - new Date(b['packingEnd'])
@@ -30,7 +31,7 @@ export const calculatePackersData = () => {
     const filteredData = sortedData.filter(order => {
         const packageDate = new Date(order['packingEnd']);
         // console.log(packageDate, order['packingEnd'], order['item'], "  ", fromDate);
-        return packageDate >= fromDate() && packageDate <= toDate()
+        return (packageDate >= fromDate() && packageDate <= toDate()) && order['orderType'] !== ""
     })
     const packersDataGroupByNames = filteredData.reduce((acc, order) => {
         const packLocation = order['location'].toLowerCase().substr(0, 4).trim();
@@ -41,10 +42,8 @@ export const calculatePackersData = () => {
             acc[packerName]["items"] = acc[packerName]["items"] || [];
             acc[packerName]['orders'] = acc[packerName]['orders'] || {};
             acc[packerName]['orders'][orders] = acc[packerName]['orders'][orders] || []
-            if (acc[packerName]['orders'][orders].length <= 100) {
-                acc[packerName]['orders'][orders].push(order);
-                acc[packerName]["items"].push(order);
-            }
+            acc[packerName]['orders'][orders].push(order);
+            acc[packerName]["items"].push(order);
         }
         return acc;
     }, {})
@@ -74,8 +73,19 @@ export const calculatePackersData = () => {
     if (results.length !== 0) {
         makeTable(results);
         charts(results);
+    } else {
+        Toastify({
+            stopOnFocus: true,
+            text: "No data found between selected date.",
+            className: "warning",
+            style: {
+                opacity: 0.5,
+                background: "#FFC107",
+            },
+            position: "left",
+            gravity: "bottom",
+        }).showToast();
     }
-    spinner('remove');
     return results;
 }
 export const getTotalTime = (packerData) => {
