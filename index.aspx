@@ -27,8 +27,9 @@
 	<nav class="navbar navbar-light navbar-light bg-warning" aria-label="Navbar">
 		<div class="container-fluid">
 			<a href="/" class="d-flex ml-5 align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
-				<img class="bi me-2" width="120" height="17" src="./assets/images/logo-dhl.png" />
-				<span id="brand" class="fs-4 text-danger">Dashboard</span>
+				<img class="bi me-2 flex-grow-2" width="120" height="17" alt="logo"
+					src="./assets/images/logo-dhl.png" />
+				<span id="brand" class="fs-5 text-danger">Dashboard</span>
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
 				data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark">
@@ -99,16 +100,6 @@
 		<div class="mx-auto bg-white" id="uph-charts" style="width: 98vw; height:100vh;"></div>
 	</section>
 
-	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-		<div class="col-md-4 d-flex align-items-center">
-			<a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-				<svg class="bi" width="30" height="24">
-					<use xlink:href="#bootstrap"></use>
-				</svg>
-			</a>
-			<span class="mb-3 mb-md-0 text-muted">© 2022 Company, Inc</span>
-		</div>
-	</footer>
 
 	<div class="modal-dialog modal-xl" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true" id="modal">
 

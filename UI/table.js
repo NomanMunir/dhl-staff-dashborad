@@ -1,6 +1,10 @@
 import { capitalize, toHoursAndMinutes } from "../scripts/helpers.js";
+import { tableCheckboxElem, tableDiv } from "./elements.js";
 
 export const makeTable = (packers) => {
+  if (!tableCheckboxElem.checked) {
+    tableDiv.className = "display-none";
+  }
   packers.sort((a, b) => b.numberOfItems.length - a.numberOfItems.length)
   const tableElement = document.querySelector('#table');
   const tableHtml =

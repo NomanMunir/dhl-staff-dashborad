@@ -1,5 +1,5 @@
 import { config } from "../config.js";
-import { fromDate, spinner, toDate } from "../UI/elements.js";
+import { fromDate, spinner, tableCheckboxElem, toDate } from "../UI/elements.js";
 import { makeTable } from "../UI/table.js";
 import { charts } from "./charts.js";
 
