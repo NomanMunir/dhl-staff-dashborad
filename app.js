@@ -11,7 +11,7 @@ import { calculatePackersData, mapData } from "./scripts/helpers.js";
 const parseData = () => {
     setDefaultDateTime();
     spinner("add");
-    const url = "./test.csv";
+    const url = "./dispatch-report.csv";
     Papa.parse(url, {
         download: true,
         header: true,
