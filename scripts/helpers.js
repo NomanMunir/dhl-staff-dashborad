@@ -4,20 +4,24 @@ import { makeTable } from "../UI/table.js";
 import { charts } from "./charts.js";
 
 export const mapData = (data) => {
-    const result = data.map(data => ({
-        awb: data['Airway bill no'].trim(),
-        rawb: data['Return airway bill no'].trim(),
-        city: data['City'].trim(),
-        item: data['Item'].trim(),
-        orderId: data['Order ID'].trim(),
-        orderNumber: data['Order Number'].trim(),
-        orderType: data['Order type'].trim(),
-        packId: data['Pack id'].trim(),
-        packedBy: data['Packed by'].trim(),
-        location: data['Packing location'].trim(),
-        tour: data['acc. country'].trim(),
-        packingEnd: `${data['Packing End'].trim()}`
-    }))
+    const result = data.filter((items) => items['Airway bill no'].trim().length !== 2 && order['orderType'] !== "")
+        .map((data) => {
+            return {
+                awb: data['Airway bill no'].trim(),
+                rawb: data['Return airway bill no'].trim(),
+                city: data['City'].trim(),
+                item: data['Item'].trim(),
+                orderId: data['Order ID'].trim(),
+                orderNumber: data['Order Number'].trim(),
+                orderType: data['Order type'].trim(),
+                packId: data['Pack id'].trim(),
+                packedBy: data['Packed by'].trim(),
+                location: data['Packing location'].trim(),
+                tour: data['acc. country'].trim(),
+                packingEnd: `${data['Packing End'].trim()}`
+            }
+        }
+        )
     return result;
 }
 
@@ -31,7 +35,7 @@ export const calculatePackersData = () => {
     const filteredData = sortedData.filter(order => {
         const packageDate = new Date(order['packingEnd']);
         // console.log(packageDate, order['packingEnd'], order['item'], "  ", fromDate);
-        return (packageDate >= fromDate() && packageDate <= toDate()) && order['orderType'] !== ""
+        return (packageDate >= fromDate() && packageDate <= toDate())
     })
     const packersDataGroupByNames = filteredData.reduce((acc, order) => {
         const packLocation = order['location'].toLowerCase().substr(0, 4).trim();

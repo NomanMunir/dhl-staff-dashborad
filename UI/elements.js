@@ -35,12 +35,16 @@ export const toDate = () => {
 
 export const setDefaultDateTime = () => {
 	const current = new Date();
+	current.setHours(11, 0, 0, 0);
+
+	fromDateElem.value = current.toISOString().substring(0, 10);
+	fromTimeElem.value = current.toISOString().substring(11, 16);
+
+	current.setHours(current.getHours() + 10);
 	toDateElem.value = current.toISOString().substring(0, 10);
 	toTimeElem.value = current.toISOString().substring(11, 16);
 	//setting date to previews date
-	current.setDate(current.getDate() - 1);
-	fromDateElem.value = current.toISOString().substring(0, 10);
-	fromTimeElem.value = current.toISOString().substring(11, 16);
+	// current.setDate(current.getDate() - 1);
 }
 
 // -----------------------------------Check Boxes Elements---------------------------------- //

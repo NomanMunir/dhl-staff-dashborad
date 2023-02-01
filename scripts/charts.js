@@ -41,7 +41,11 @@ export const charts = (packersData) => {
 
     const chartsPlugins = {
         legend: {
-            //display: false
+            display: false,
+            labels: {
+                color: 'rgb(255, 99, 132)',
+                fullSize: true,
+            },
         },
         // Change options for ALL labels of THIS CHART
         datalabels: {
@@ -72,11 +76,17 @@ export const charts = (packersData) => {
 
             }
         }
-    };
+    }
     const chartsOptions = {
         plugins: chartsPlugins,
         indexAxis: "x",
         responsive: true,
+        legend: {
+            labels: {
+                fontColor: '#0000ff',
+                fontSize: 18
+            }
+        },
         scales: {
             y: {
                 title: {

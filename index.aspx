@@ -24,12 +24,11 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-light navbar-light bg-warning" aria-label="Navbar">
+	<nav class="navbar navbar-light navbar-light bg-warning shadow-sm" aria-label="Navbar">
 		<div class="container-fluid">
 			<a href="/" class="d-flex ml-5 align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
-				<img class="bi me-2 flex-grow-2" width="120" height="17" alt="logo"
-					src="./assets/images/logo-dhl.png" />
-				<span id="brand" class="fs-5 text-danger">Dashboard</span>
+				<img class="bi me-2" width="120" height="17" alt="logo" src="./assets/images/logo-dhl.png" />
+				<span id="brand" class="fs-5 mx-4 text-danger">Dashboard</span>
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
 				data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark">
@@ -59,11 +58,11 @@
 
 							</div>
 						</li>
-						<li class="nav-item my-2 bg-light">
-							<span class="h6 py-2 bg-text-light">Query Date</span>
+						<li class="my-3 p-2 bg-light">
+							<span class="h6 bg-text-light">Query Date</span>
 						</li>
 						<li class="nav-item">
-							<div class="mx-2" id="from-date-div">
+							<div class="" id="from-date-div">
 								<label for="from-date">From:</label>
 								<div class="">
 									<input class="form-control-sm" type="date" id="from-date" name="fromDate">
@@ -72,7 +71,7 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<div class="mx-2" id="to-date-div">
+							<div class="" id="to-date-div">
 								<label for="to-date">To:</label>
 								<div class="">
 									<input class="form-control-sm" type="date" name="toDate" id="to-date">
@@ -81,8 +80,7 @@
 							</div>
 						</li>
 					</ul>
-					<hr>
-					<div class="d-flex mt-3" role="search">
+					<div class="d-flex mt-4" role="search">
 						<input class="form-control" defaultValue="40" placeholder="Filter Break Time" type="text"
 							name="Toggle Menu" id="break-time">
 					</div>
@@ -90,20 +88,19 @@
 			</div>
 		</div>
 	</nav>
-
 	<center>
 		<div class="spinner"></div>
 	</center>
-	<section class="d-flex flex-column justify-content-center gx-3">
+	<section class="d-flex flex-column justify-content-center m-3 gx-3">
 		<div class="mx-auto my-3 bg-white" style="width: 100vw; height:auto;" id="perf-charts"></div>
 		<div id="table" class="mx-auto my-3 bg-white" style="width: 98vw; height:auto;"></div>
-		<div class="mx-auto bg-white" id="uph-charts" style="width: 98vw; height:100vh;"></div>
+		<div class="mx-auto bg-white" id="uph-charts" style="width: 98vw; height:auto;"></div>
 	</section>
-
 
 	<div class="modal-dialog modal-xl" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true" id="modal">
 
 	</div>
 </body>
+
 <script src="./styles/toastify.js"></script>
 <script type="module" src="app.js"></script>

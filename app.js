@@ -33,7 +33,6 @@ const parseData = () => {
             spinner("remove");
         },
         complete: function (results) {
-            console.log(results);
             if (results.data.length !== 0) {
                 const uniqueArr = [...new Set(results.data.map(JSON.stringify))].map(JSON.parse);
                 window.packersData = mapData(uniqueArr);
