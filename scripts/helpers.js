@@ -4,7 +4,7 @@ import { makeTable } from "../UI/table.js";
 import { charts } from "./charts.js";
 
 export const mapData = (data) => {
-    const result = data.filter((items) => items['Airway bill no'].trim().length !== 2 && order['orderType'] !== "")
+    const result = data.filter((items) => items['Airway bill no'].trim().length !== 2 && items['Order type'] !== "")
         .map((data) => {
             return {
                 awb: data['Airway bill no'].trim(),

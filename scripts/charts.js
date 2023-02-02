@@ -1,6 +1,9 @@
 import { perfChartCheckboxElem, uphChartCheckboxElem, fromDate, toDate } from "../UI/elements.js";
 
 export const charts = (packersData) => {
+    // Setting Chart default font size
+    Chart.defaults.font.size = "28rem";
+
     //Html Elements for charts
     document.getElementById('uph-charts').innerHTML = '<div class="shadow-sm m-3"><canvas id="cnv_uph_chart"></canvas></div>'
     document.getElementById('perf-charts').innerHTML = '<div class="shadow-sm"><canvas id="cnv_perf_chart"></canvas></div>'
@@ -40,13 +43,7 @@ export const charts = (packersData) => {
     };
 
     const chartsPlugins = {
-        legend: {
-            display: false,
-            labels: {
-                color: 'rgb(255, 99, 132)',
-                fullSize: true,
-            },
-        },
+
         // Change options for ALL labels of THIS CHART
         datalabels: {
             anchor: "end",
@@ -84,13 +81,13 @@ export const charts = (packersData) => {
         legend: {
             labels: {
                 fontColor: '#0000ff',
-                fontSize: 18
+                fontSize: 60
             }
         },
         scales: {
             y: {
                 title: {
-                    display: true,
+                    display: false,
                     align: "center",
                     text: "Packer's Performance",
                     font: {
@@ -109,7 +106,7 @@ export const charts = (packersData) => {
     }
     const chartsAnimation = {
         tension: {
-            duration: 1000,
+            duration: 2000,
             easing: 'linear',
             from: 1,
             to: 0,
@@ -141,7 +138,8 @@ const uphChart = ({ uphChartData, chartsOptions, chartsAnimation }) => {
         plugins: [ChartDataLabels],
         data: uphChartData,
         options: {
-            ...chartsOptions, scales: {
+            ...chartsOptions,
+            scales: {
                 y: {
                     title: {
                         display: false,
@@ -157,6 +155,11 @@ const uphChart = ({ uphChartData, chartsOptions, chartsAnimation }) => {
                 x: {
 
                     display: false
+                }
+            },
+            legend: {
+                labels: {
+                    fontSize: 18
                 }
             }
         },

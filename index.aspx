@@ -64,7 +64,7 @@
 						<li class="nav-item">
 							<div class="" id="from-date-div">
 								<label for="from-date">From:</label>
-								<div class="">
+								<div class="" title="(mm/dd/yyyy)">
 									<input class="form-control-sm" type="date" id="from-date" name="fromDate">
 									<input class="form-control-sm" type="time" id="from-time" name="fromTime">
 								</div>
@@ -73,7 +73,7 @@
 						<li class="nav-item">
 							<div class="" id="to-date-div">
 								<label for="to-date">To:</label>
-								<div class="">
+								<div class="" title="(mm/dd/yyyy)">
 									<input class="form-control-sm" type="date" name="toDate" id="to-date">
 									<input class="form-control-sm" type="time" name="toTime" id="to-time">
 								</div>
@@ -92,7 +92,7 @@
 		<div class="spinner"></div>
 	</center>
 	<section class="d-flex flex-column justify-content-center m-3 gx-3">
-		<div class="mx-auto my-3 bg-white" style="width: 100vw; height:auto;" id="perf-charts"></div>
+		<div class="mx-auto my-3 bg-white card" style="width: 98vw; height:auto;" id="perf-charts"></div>
 		<div id="table" class="mx-auto my-3 bg-white" style="width: 98vw; height:auto;"></div>
 		<div class="mx-auto bg-white" id="uph-charts" style="width: 98vw; height:auto;"></div>
 	</section>
