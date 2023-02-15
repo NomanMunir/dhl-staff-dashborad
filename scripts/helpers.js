@@ -20,8 +20,8 @@ export const mapData = (data) => {
                 tour: data['acc. country'].trim(),
                 packingEnd: `${data['Packing End'].trim()}`
             }
-        }
-        )
+        })
+
     return result;
 }
 
@@ -52,7 +52,7 @@ export const calculatePackersData = () => {
         return acc;
     }, {})
 
-    const results = (Object.entries(packersDataGroupByNames).slice()
+    const calculatedData = (Object.entries(packersDataGroupByNames).slice()
         .reduce((result, [packerName, packerData]) => {
             const packerId = packerData['items'][0]['packedBy'];
             const numberOfItems = packerData['items'];
@@ -73,6 +73,7 @@ export const calculatePackersData = () => {
             )
             return result
         }, []));
+    const results = calculatedData.filter(packer => Object.keys(packer.numberOfOrders).length > 10);
     window.packers = results;
     if (results.length !== 0) {
         makeTable(results);

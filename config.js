@@ -41,5 +41,6 @@ export const config = {
     "fahe": "Faheem",
     "jose": "Joseph",
     "pete": "Peter",
-    "pcks": "Unknown"
+    "pcks": "Unknown",
+	"mirz": "Mirza"
 }
