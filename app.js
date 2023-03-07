@@ -35,6 +35,7 @@ const parseData = () => {
         complete: function (results) {
             if (results.data.length !== 0) {
                 const uniqueArr = [...new Set(results.data.map(JSON.stringify))].map(JSON.parse);
+                // console.log(uniqueArr);
                 window.packersData = mapData(uniqueArr);
                 calculatePackersData();
             } else {
