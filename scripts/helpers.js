@@ -73,18 +73,6 @@ export const calculatePackersData = () => {
             return result
         }, []));
     const results = calculatedData.filter(packer => Object.keys(packer.numberOfOrders).length > 25);
-    const reportResult = filteredData.reduce((ac, item) => {
-
-        item['tour'] = item['tour'] || 1;
-        ac.push(item['tour']++);
-        return ac;
-    }, [])
-    console.log(reportResult);
-    // let report = {
-    //     'Total AE': reportResult['AE'] || 0, 'Total GCC': (reportResult['BH'] || 0) +
-    //         (reportResult['SA'] || 0) + (reportResult['KW'] || 0) + (reportResult['OM'] || 0)
-    // }
-    // console.table(report);
     window.packers = results;
     if (results.length !== 0) {
         makeTable(results);
