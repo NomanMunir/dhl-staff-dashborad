@@ -72,7 +72,7 @@ export const calculatePackersData = () => {
             )
             return result
         }, []));
-    const results = calculatedData.filter(packer => Object.keys(packer.numberOfOrders).length > 25);
+    const results = calculatedData.filter(packer => Object.keys(packer.numberOfOrders).length >= 20);
     window.packers = results;
     if (results.length !== 0) {
         makeTable(results);
