@@ -26,6 +26,7 @@ export const mapData = (data) => {
 
 export const calculatePackersData = () => {
     window.packers = [];
+    window.packersNoFilter = [];
     const dbPackersData = packersData.slice();
     const sortedData = dbPackersData.sort((a, b) => {
         return new Date(a['packingEnd']) - new Date(b['packingEnd'])
@@ -74,8 +75,9 @@ export const calculatePackersData = () => {
         }, []));
     const results = calculatedData.filter(packer => Object.keys(packer.numberOfOrders).length >= 20);
     window.packers = results;
+    window.packersNoFilter = calculatedData.filter(packer => Object.keys(packer.numberOfOrders).length >= 10);
     if (results.length !== 0) {
-        makeTable(results);
+        makeTable(packersNoFilter);
         charts(results);
     } else {
         Toastify({
