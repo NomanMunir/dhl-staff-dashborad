@@ -4,6 +4,11 @@ import { makeTable } from "../UI/table.js";
 import { charts } from "./charts.js";
 
 export const mapData = (data) => {
+    const convertToValidDate = (dateString) => {
+        const [date, time] = dateString.split(' ');
+        const [year, month, day] = date.split('/');
+        return `${month}/${day``}/${year} ${time}`;
+    };
     const result = data.filter((items) => items['Airway bill no'].trim().length !== 2 && items['Order type'] !== "")
         .map((data) => {
             return {
@@ -18,7 +23,7 @@ export const mapData = (data) => {
                 packedBy: data['Packed by'].trim(),
                 location: data['Packing location'].trim(),
                 tour: data['acc. country'].trim(),
-                packingEnd: `${data['Packing End'].trim()}`
+                packingEnd: convertToValidDate(data['Packing End'].trim()),
             }
         })
     return result;
@@ -31,7 +36,6 @@ export const calculatePackersData = () => {
     const sortedData = dbPackersData.sort((a, b) => {
         return new Date(a['packingEnd']) - new Date(b['packingEnd'])
     })
-
     const filteredData = sortedData.filter(order => {
         const packageDate = new Date(order['packingEnd']);
         // console.log(packageDate, order['packingEnd'], order['item'], "  ", fromDate);
@@ -51,7 +55,6 @@ export const calculatePackersData = () => {
         }
         return acc;
     }, {})
-
     const calculatedData = (Object.entries(packersDataGroupByNames).slice()
         .reduce((result, [packerName, packerData]) => {
             const packerId = packerData['items'][0]['packedBy'];
