@@ -21,8 +21,8 @@ export const charts = (packersData) => {
 	const backgroundColorForPerf = perfPackers.map(packer => chooseColorForPerfChart(packer['performance']));
 
 	//"UPH- Packers - from 10 March @ 0700 hrs to 11 March @ 0500 hrs"
-	const formattedPackersChartDate = ()=>{
-		return `${fromDate().toLocaleDateString(undefined, {day:"numeric", month:"long",})} @ ${fromDate().toLocaleTimeString('en-US', { hour12: false })} hrs to ${toDate().toLocaleDateString(undefined, {day:"numeric", month:"long",})} @ ${toDate().toLocaleTimeString('en-US', { hour12: false })} hrs`;
+	const formattedPackersChartDate = () => {
+		return `${fromDate().toLocaleDateString(undefined, { day: "numeric", month: "long", })} @ ${fromDate().toLocaleTimeString('en-US', { hour12: false })} hrs to ${toDate().toLocaleDateString(undefined, { day: "numeric", month: "long", })} @ ${toDate().toLocaleTimeString('en-US', { hour12: false })} hrs`;
 	}
 	const uphChartData = {
 		labels: uphPackers.map(packer => packer.packerName.toUpperCase()), //Packers Names
@@ -136,8 +136,6 @@ export const charts = (packersData) => {
 
 const uphChart = ({ uphChartData, chartsOptions, chartsAnimation }) => {
 	const ctx = document.getElementById('cnv_uph_chart').getContext('2d');
-	console.log(fromDate(), toDate());
-	
 	const uphChart = new Chart(ctx, {
 		type: "bar",
 		plugins: [ChartDataLabels],

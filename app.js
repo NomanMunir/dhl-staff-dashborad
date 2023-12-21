@@ -91,7 +91,6 @@ const breakTimeFilterChangeHandler = (e) => {
 
 const dateChangeHandler = (e) => {
     calculatePackersData();
-    console.log("DateChange");
     if (e.key == "Enter") {
     }
 }

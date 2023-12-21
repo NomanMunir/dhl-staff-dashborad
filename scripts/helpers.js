@@ -7,8 +7,16 @@ export const mapData = (data) => {
     const convertToValidDate = (dateString) => {
         const [date, time] = dateString.split(' ');
         const [year, month, day] = date.split('/');
-        return `${month}/${day``}/${year} ${time}`;
+        return `${month}/${day}/${year} ${time}`;
     };
+    const selectValidDate = (data) => {
+        if (new Date(data['Packing End']).toString() == "Invalid Date") {
+            return convertToValidDate(data['Packing End']);
+        }
+        else {
+            return data['Packing End'];
+        }
+    }
     const result = data.filter((items) => items['Airway bill no'].trim().length !== 2 && items['Order type'] !== "")
         .map((data) => {
             return {
@@ -23,7 +31,7 @@ export const mapData = (data) => {
                 packedBy: data['Packed by'].trim(),
                 location: data['Packing location'].trim(),
                 tour: data['acc. country'].trim(),
-                packingEnd: convertToValidDate(data['Packing End'].trim()),
+                packingEnd: selectValidDate(data),
             }
         })
     return result;
