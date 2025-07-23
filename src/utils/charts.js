@@ -98,8 +98,6 @@ export const charts = (packersData) => {
         let name = context.chart.config._config.data.labels[context.dataIndex];
         // let name = perfPackers[context.dataIndex]["packerName"];
         return [value, Array.from(name).join(" \n ")].join("\n\n");
-        return ["\n\n", "\n\n", value, "\n\n"];
-        //,Math.round(uph)
       },
     },
   };

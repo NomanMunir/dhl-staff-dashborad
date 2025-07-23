@@ -54,7 +54,7 @@ export const calculatePackersData = () => {
     return packageDate >= fromDate() && packageDate <= toDate();
   });
   const packersDataGroupByNames = filteredData.reduce((acc, order) => {
-    const packLocation = order["location"].toLowerCase().substr(0, 4).trim();
+    const packLocation = order["location"].toLowerCase().slice(0, 4).trim();
     const packerName = config[packLocation];
     const orders = order["orderNumber"];
     if (packerName) {
@@ -145,16 +145,7 @@ export const toHoursAndMinutes = (hr) => {
   const hours = Math.floor(totalMinutes / 60);
   return `${padTo2Digits(hours)}:${padTo2Digits(minutes)}`;
 };
-const capitalizeFirstLetter = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
-function camelize(str) {
-  return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
-    if (+match === 0) return "";
-    // or if (/\s+/.test(match)) for white spaces
-    return index === 0 ? match.toLowerCase() : match.toUpperCase();
-  });
-}
+
 /**
  * Capitalizes first letters of words in string.
  * @param {string} str String to be modified
@@ -169,31 +160,3 @@ export const capitalize = (str, lower = false) =>
   (lower ? str.toLowerCase() : str).replace(/(?:^|\s|["'([{])+\S/g, (match) =>
     match.toUpperCase()
   );
-
-// -----------------------------------Modal---------------------------------- //
-const modalElement = document.querySelector("#modal");
-
-const modal = (data) => {
-  // modalElement.innerHTML
-  const items = packersData.filter((name) => name.packerName == data)[0]
-    .numberOfItems;
-  const html = [];
-  html.push(`
-    <div class="modal-body">
-<table class="table-primary">
-    `);
-  html.push(
-    items
-      .map(
-        (item) => `
-        <tr>
-            <td scope="col">${item.Item}</td>
-            <td scope="col">${item.City}</td>
-        </tr>
-    `
-      )
-      .join("")
-  );
-  html.push("<table/></div>");
-  modalElement.innerHTML = html.join("");
-};
